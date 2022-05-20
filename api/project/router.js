@@ -3,10 +3,9 @@ const model = require('./model')
 const project = require('express').Router()
 
 project.get('/', (req, res) => {
-    const { id }= req.params
-
     model.getAll()
     .then(results => {
+        results.forEach(thing => thing.project_completed = Boolean(thing.project_completed))
         res.status(200).json(results)
     })
     .catch(err => {
@@ -17,9 +16,11 @@ project.get('/', (req, res) => {
 
 project.post('/', (req, res) => {
     const { body } = req
-
+    // console.log(body)
     model.create(body)
     .then(results => {
+        results.project_completed = Boolean(results.project_completed)
+        console.log(results)
         res.status(200).json(results)
     })
     .catch(err => {

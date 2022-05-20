@@ -20,7 +20,6 @@ resource.get('/', (req, res) => {
 
 resource.post('/', (req, res) => {
     const { body } = req
-    console.log(body)
     model.create(body)
     .then(results => {
         res.status(201).json(results)

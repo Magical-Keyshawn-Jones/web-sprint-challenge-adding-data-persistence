@@ -12,6 +12,11 @@ function getAll(id) {
 async function create(change) {
     const [id] = await db('projects').insert(change)
     return getAll(id)
+    // db('projects').insert(change)
+    // .then(results => {
+    //     const [id] = results.project_completed = Boolean(results.project_completed)
+    //     return getAll(id)
+    // })
 }
 
 module.exports = {
