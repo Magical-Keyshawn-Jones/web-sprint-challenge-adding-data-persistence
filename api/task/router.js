@@ -5,7 +5,10 @@ const task = require('express').Router()
 task.get('/', (req, res) => {
     model.getAll()
     .then(results => {
-        results.forEach(thing => thing.task_completed = Boolean(thing.task_completed))
+        results.forEach(thing => {
+            thing.task_completed = Boolean(thing.task_completed)
+            thing.project_completed = Boolean(thing.project_completed)
+        })
         res.status(200).json(results)
     })
     .catch(err => {

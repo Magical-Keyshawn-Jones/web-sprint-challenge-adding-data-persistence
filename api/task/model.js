@@ -2,25 +2,29 @@
 const db = require('../../data/dbConfig')
 
 function getAll() {
-    // return db('projects').select('project_name', 'project_description')
-        return db('tasks as t')
-        // .join('projects as p', 'project_resources as D')
-        .join('projects as p', 't.task_id', '=', 'p.project_id')
-        .select('t.task_notes', 't.task_description', 't.task_completed', 'p.project_name', 'p.project_description')
-        // .where('t.task_id', 'p.project_id')
+    return db('tasks')
+
+        // return db('tasks')
+        // .join('projects')
+        // .limit(3)
+        
+        // return db('tasks as t')
+        // .join('projects as p')
+        // .join('projects as p', 'p.project_id', '=', 't.task_id')
+        // .select('p.project_name', 'p.project_description', 't.task_notes', 't.task_description')
+        // .limit(3)
+
+
+        // .join('project_resources as d', 't.task_id', '=', 'd.project_id')
 }
 
 function getTask(id) {
-    if (!id) {
-        return db('tasks')
-    } else {
         return db('tasks').where('task_id', id).first()
-    }
 }
 
 async function create(body) {
-    const [id] = await db('tasks').insert(body)
-    return getTask(id)
+    const result = await db('tasks').insert(body)
+    return getTask(result[0])
 }
 
 module.exports = {
