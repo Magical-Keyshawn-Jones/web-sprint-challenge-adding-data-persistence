@@ -1,21 +1,14 @@
 // build your `Task` model here
 const db = require('../../data/dbConfig')
-
+// You are just not returning the data exact as requested ...  both in data object and status. I recommend that do one line at a time, and I don't think your join on line 6 is correct.
 function getAll() {
+
     return db('tasks')
 
-        // return db('tasks')
-        // .join('projects')
-        // .limit(3)
-        
-        // return db('tasks as t')
-        // .join('projects as p')
-        // .join('projects as p', 'p.project_id', '=', 't.task_id')
-        // .select('p.project_name', 'p.project_description', 't.task_notes', 't.task_description')
-        // .limit(3)
-
-
-        // .join('project_resources as d', 't.task_id', '=', 'd.project_id')
+    
+    // return db('tasks as t')
+    // .join('projects as p', 'p.project_id', '=', 't.task_id') //Join is wrong
+    // .select('p.project_name', 'p.project_description', 't.task_notes', 't.task_description')
 }
 
 function getTask(id) {

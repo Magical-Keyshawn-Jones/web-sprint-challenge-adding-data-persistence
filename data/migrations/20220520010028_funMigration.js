@@ -26,28 +26,28 @@ exports.up = async function(knex) {
       .onDelete('CASCADE')
   })
 
-  // await knex.schema.createTable('project_resources', table => {
-  //     table.integer('project_id')
-  //     .unsigned()
-  //     .notNullable()
-  //     .references('project_id')
-  //     .inTable('projects')
-  //     table.integer('resource_id')
-  //     .unsigned()
-  //     .notNullable()
-  //     .references('resource_id')
-  //     .inTable('resources')
-  //     .onUpdate('CASCADE')
-  //       .onDelete('CASCADE')
-  //     table.primary(['project_id', 'resource_id'])
-  // })
+  await knex.schema.createTable('project_resources', table => {
+      table.integer('project_id')
+      .unsigned()
+      .notNullable()
+      .references('project_id')
+      .inTable('projects')
+      table.integer('resource_id')
+      .unsigned()
+      .notNullable()
+      .references('resource_id')
+      .inTable('resources')
+      .onUpdate('CASCADE')
+        .onDelete('CASCADE')
+      table.primary(['project_id', 'resource_id'])
+  })
 };
 
 exports.down = async function(knex) {
   await knex.schema.dropTableIfExists('resources')
   await knex.schema.dropTableIfExists('tasks')
   await knex.schema.dropTableIfExists('projects')
-  // await knex.schema.dropTableIfExists('project_resources')
+  await knex.schema.dropTableIfExists('project_resources')
 };
 
 //////////////////////
