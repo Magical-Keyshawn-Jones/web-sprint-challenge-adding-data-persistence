@@ -158,18 +158,18 @@ describe('server.js', () => {
       }, 750)
       test('[12] each task contains the project_name and the project_description', async () => {
         const res = await request(server).get('/api/tasks')
-        // expect(res.body[0]).toMatchObject({
-        //   project_name: 'Web API',
-        //   project_description: 'Build APIs',
-        // })
-        // expect(res.body[1]).toMatchObject({
-        //   project_name: 'Web API',
-        //   project_description: 'Build APIs',
-        // })
-        // expect(res.body[2]).toMatchObject({
-        //   project_name: 'Databases',
-        //   project_description: 'Learn SQL',
-        // })
+        expect(res.body[0]).toMatchObject({
+          project_name: 'Web API',
+          project_description: 'Build APIs',
+        })
+        expect(res.body[1]).toMatchObject({
+          project_name: 'Web API',
+          project_description: 'Build APIs',
+        })
+        expect(res.body[2]).toMatchObject({
+          project_name: 'Databases',
+          project_description: 'Learn SQL',
+        })
       }, 750)
     })
     describe('[POST] /api/tasks', () => {
